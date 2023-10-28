@@ -15,7 +15,8 @@ import Button from '@mui/material/Button';
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { Link } from 'react-router-dom'; // Import Link
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
   // ... your styles
@@ -30,6 +31,7 @@ export default function Header() {
   const dispatch = useDispatch();
   const movieSearchTerm = useSelector((state) => state.movies.movieSearchTerm);
   const linkRef = useRef();
+  const navigate = useNavigate();
 
   const onSearchChanged = (e) => setSearchTerm(e.target.value);
 
@@ -37,6 +39,9 @@ export default function Header() {
     if (searchTerm !== '') {
       dispatch(setMovieSearchTerm(searchTerm));
       setSearchTerm('');
+      setTimeout(() => {
+        navigate('/');
+      }, 500);
     }
   }
 

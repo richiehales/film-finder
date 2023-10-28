@@ -2,7 +2,7 @@ import {  createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   movies: [],
-  movieSearchTerm: 'avengers'
+  movieSearchTerm: 'star wars'
 }
 
 
