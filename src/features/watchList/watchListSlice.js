@@ -23,7 +23,8 @@ const initialState = {
       Year: "1977",
       imdbID: "tt0076759"
     },
-  ]
+  ],
+  badgeCount: 0
 }
 
 
@@ -38,9 +39,12 @@ export const watchListSlice = createSlice({
       // Use filter to remove the item with the given imdbID
       state.watchList = state.watchList.filter(item => item.imdbID !== action.payload.imdbID);
     },
+    setBadgeCount: (state, action) => {
+      state.badgeCount = action.payload;
+    }
   }  
 })
 
 
-export const { addMovieToWatchList, removeFromWatchlist } = watchListSlice.actions;
+export const { addMovieToWatchList, removeFromWatchlist, setBadgeCount } = watchListSlice.actions;
 export default watchListSlice.reducer;

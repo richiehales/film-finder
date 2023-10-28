@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMovieSearchTerm } from '../searchResults/searchResultsSlice';
+import { setBadgeCount } from '../watchList/watchListSlice';
 import { fetchMoviesData } from '../searchResults/getSearchResults';
 import { styled } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -29,13 +30,14 @@ const StyledInputBase = styled(InputBase)((({ theme }) => ({
 })));
 
 export default function Header() {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');  
   const dispatch = useDispatch();
   const movieSearchTerm = useSelector((state) => state.movies.movieSearchTerm);
-  const movieWatchList = useSelector((state) => state.watchList.watchList);
+  const badgeCount = useSelector((state) => state.watchList.badgeCount);
   const linkRef = useRef();
   const navigate = useNavigate();
 
+  
   const onSearchChanged = (e) => setSearchTerm(e.target.value);
 
   const onSearchClicked = () => {
@@ -58,6 +60,10 @@ export default function Header() {
     }
   };
 
+  const resetBadgeCount = () => {
+    dispatch(setBadgeCount(0))
+  }
+
   useEffect(() => {
     dispatch(fetchMoviesData(movieSearchTerm));
   }, [dispatch, movieSearchTerm]);
@@ -68,8 +74,13 @@ export default function Header() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const searchHandleClose = () => {
     setAnchorEl(null);
+  };
+
+  const watchlistHandleClose = () => {
+    setAnchorEl(null);
+    dispatch(setBadgeCount(0))
   };
 
   return (
@@ -90,7 +101,7 @@ export default function Header() {
             id="basic-menu"
             anchorEl={anchorEl}
             open={open}
-            onClose={handleClose}
+            onClose={searchHandleClose}
             MenuListProps={{
               'aria-labelledby': 'basic-button',
             }}
@@ -104,13 +115,13 @@ export default function Header() {
               <Link
                 to='/'>
                 <Button>
-                  <MenuItem onClick={handleClose}>Search</MenuItem>            
+                  <MenuItem onClick={searchHandleClose}>Search</MenuItem>            
                 </Button>
               </Link>
               <Link
                 to="/WatchList">
                 <Button> 
-                  <MenuItem onClick={handleClose}>Watchlist</MenuItem>
+                  <MenuItem onClick={watchlistHandleClose}>Watchlist</MenuItem>
                 </Button>
               </Link>
             </ButtonGroup>
@@ -120,15 +131,13 @@ export default function Header() {
             noWrap
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-          >
-            
-              Movie Finder & Planner
-            
+          >            
+            Movie Finder & Planner            
           </Typography>
           <Link
                 to="/WatchList">
-          <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-            <Badge badgeContent={movieWatchList.length} color="error">
+          <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={resetBadgeCount}>
+            <Badge badgeContent={badgeCount} color="error">
               <OndemandVideoIcon />
             </Badge>
           </IconButton>

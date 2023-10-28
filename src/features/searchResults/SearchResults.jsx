@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Card, CardContent, Grid, Typography, Box, Button } from '@mui/material';
-import { addMovieToWatchList } from '../watchList/watchListSlice';
+import { addMovieToWatchList, setBadgeCount } from '../watchList/watchListSlice';
 import Image from 'mui-image'
 
 
@@ -9,9 +9,11 @@ export function SearchResults() {
   const dispatch = useDispatch();
   const movieSearchTerm = useSelector((state) => state.movies.movieSearchTerm);
   const searchResults = useSelector((state) => state.movies.movies.Search);
+  const badgeCount = useSelector((state) => state.watchList.badgeCount);
   
   const handleAddToWatchlist = (movie) => {
     dispatch(addMovieToWatchList(movie));
+    dispatch(setBadgeCount(badgeCount+1))
   };
 
   const cardStyle = {
