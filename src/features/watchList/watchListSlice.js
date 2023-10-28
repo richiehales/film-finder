@@ -34,9 +34,12 @@ export const watchListSlice = createSlice({
     addMovieToWatchList: (state, action) => {
       state.watchList.push(action.payload);
     },
+    removeFromWatchlist: (state, action) => {
+      state.watchList.push(action.payload);
+    },
   }  
 })
 
 
-export const { addMovieToWatchList } = watchListSlice.actions;
+export const { addMovieToWatchList, removeFromWatchlist } = watchListSlice.actions;
 export default watchListSlice.reducer;

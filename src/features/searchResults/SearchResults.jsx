@@ -9,7 +9,6 @@ export function SearchResults() {
   const searchResults = useSelector((state) => state.movies.movies.Search);
   
   const handleAddToWatchlist = (movie) => {
-    console.log(movie)
     dispatch(addMovieToWatchList(movie));
   };
 
@@ -31,7 +30,11 @@ export function SearchResults() {
           <Typography color="textSecondary">
             {item.Year}
           </Typography>
-          <Button variant="contained"  onClick={() => handleAddToWatchlist(item)}>Add To Watchlist</Button>
+          <Button 
+            variant="contained"  
+            onClick={() => handleAddToWatchlist(item)}>
+              Add To Watchlist
+          </Button>
         </CardContent>
       </Card>
     </Grid>

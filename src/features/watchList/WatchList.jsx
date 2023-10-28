@@ -1,11 +1,16 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Card, CardContent, Grid, Typography, Box } from '@mui/material';
+import { Card, CardContent, Grid, Typography, Box, Button } from '@mui/material';
+import { removeFromWatchlist } from './watchListSlice';
+
 
 export function WatchList() {
   const dispatch = useDispatch();
   const movieWatchList = useSelector((state) => state.watchList.watchList);
-  console.log(movieWatchList)
+  
+  const handleRemoveFromWatchlist = (movie) => {
+    dispatch(removeFromWatchlist(movie));
+  };
   
   
 
@@ -27,6 +32,11 @@ export function WatchList() {
           <Typography color="textSecondary">
             {item.Year}
           </Typography>
+          <Button 
+            variant="contained"  
+            onClick={() => handleRemoveFromWatchlist(item)}>
+              Remove
+          </Button>
         </CardContent>
       </Card>
     </Grid>

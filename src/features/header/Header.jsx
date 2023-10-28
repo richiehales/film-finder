@@ -93,12 +93,18 @@ export default function Header() {
               aria-label="vertical contained button group"
               variant="text"
             >
-              <Button component={Link} to="/"> {/* Use Link to navigate to the '/Search' route */}
-                <MenuItem onClick={handleClose}>Search</MenuItem>            
-              </Button>
-              <Button component={Link} to="/WatchList"> {/* Use Link to navigate to the '/WatchList' route */}
-                <MenuItem onClick={handleClose}>Watchlist</MenuItem>
-              </Button>
+              <Link
+                to='/'>
+                <Button>
+                  <MenuItem onClick={handleClose}>Search</MenuItem>            
+                </Button>
+              </Link>
+              <Link
+                to="/WatchList">
+                <Button> 
+                  <MenuItem onClick={handleClose}>Watchlist</MenuItem>
+                </Button>
+              </Link>
             </ButtonGroup>
           </Menu>
           <Typography
