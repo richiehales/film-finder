@@ -1,4 +1,4 @@
-const SEARCH = 'http://www.omdbapi.com/?s='
+const SEARCH = 'https://www.omdbapi.com/?s='
 const apiKey = '6910fcce'
 
 
