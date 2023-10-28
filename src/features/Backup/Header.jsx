@@ -17,8 +17,6 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
-import Badge from '@mui/material/Badge';
 
 const Search = styled('div')(({ theme }) => ({
   // ... your styles
@@ -32,7 +30,6 @@ export default function Header() {
   const [searchTerm, setSearchTerm] = useState('');
   const dispatch = useDispatch();
   const movieSearchTerm = useSelector((state) => state.movies.movieSearchTerm);
-  const movieWatchList = useSelector((state) => state.watchList.watchList);
   const linkRef = useRef();
   const navigate = useNavigate();
 
@@ -121,18 +118,10 @@ export default function Header() {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
               Movie Finder & Planner
-            
+            </div>
           </Typography>
-          <Link
-                to="/WatchList">
-          <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-            <Badge badgeContent={movieWatchList.length} color="error">
-              <OndemandVideoIcon />
-            </Badge>
-          </IconButton>
-          </Link>
           <Search onChange={onSearchChanged}>
             <IconButton size="large" aria-label="search" color="inherit" onClick={onSearchClicked}>
               <SearchIcon />
