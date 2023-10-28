@@ -9,6 +9,7 @@ export function WatchList() {
   const movieWatchList = useSelector((state) => state.watchList.watchList);
   
   const handleRemoveFromWatchlist = (movie) => {
+    console.log(movie)
     dispatch(removeFromWatchlist(movie));
   };
   

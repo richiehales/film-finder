@@ -35,7 +35,8 @@ export const watchListSlice = createSlice({
       state.watchList.push(action.payload);
     },
     removeFromWatchlist: (state, action) => {
-      state.watchList.push(action.payload);
+      // Use filter to remove the item with the given imdbID
+      state.watchList = state.watchList.filter(item => item.imdbID !== action.payload.imdbID);
     },
   }  
 })
