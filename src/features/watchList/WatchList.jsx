@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Card, CardContent, Grid, Typography, Box, Button } from '@mui/material';
 import { removeFromWatchlist } from './watchListSlice';
+import Image from 'mui-image';
 
 
 export function WatchList() {
@@ -22,7 +23,7 @@ export function WatchList() {
   const watchList = movieWatchList && movieWatchList.map((item) => (
     <Grid key={item.imdbID} item xs={12} sm={6} md={4} lg={2}>
       <Card style={cardStyle}>
-        <img src={item.Poster} alt='Film Poster' />
+        <Image src={item.Poster} alt='Film Poster' />
         <CardContent style={{ flex: 1 }}>
           <Typography variant="h6" component="div">
             {item.Title}

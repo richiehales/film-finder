@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Card, CardContent, Grid, Typography, Box, Button } from '@mui/material';
 import { addMovieToWatchList, setBadgeCount } from '../watchList/watchListSlice';
-import Image from 'mui-image'
+import Image from 'mui-image';
 
 
 export function SearchResults() {
