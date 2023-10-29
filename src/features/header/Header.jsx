@@ -74,7 +74,7 @@ export default function Header() {
       setSearchTerm('');
       setTimeout(() => {
         navigate('/');
-      }, 500);
+      }, 750);
     }
   }
 

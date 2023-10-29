@@ -19,11 +19,12 @@ export function SearchResults() {
     (item) => item.imdbID === movie.imdbID
   );
   if (!movieExistsInSearchResults) {
+    // If the movie doesn't exist, dispatch the actions
     dispatch(addMovieToWatchList(movie));
     dispatch(setBadgeCount(badgeCount + 1));
   }
   else {
-    // Add popper here
+
   }
 };
 
