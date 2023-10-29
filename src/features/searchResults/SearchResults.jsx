@@ -7,14 +7,26 @@ import Image from 'mui-image'
 
 export function SearchResults() {
   const dispatch = useDispatch();
-  const movieSearchTerm = useSelector((state) => state.movies.movieSearchTerm);
   const searchResults = useSelector((state) => state.movies.movies.Search);
+  const searchTerm = useSelector((state) => state.movies.movieSearchTerm);
+  const movieWatchList = useSelector((state) => state.watchList.watchList);
   const badgeCount = useSelector((state) => state.watchList.badgeCount);
   
+
+  
   const handleAddToWatchlist = (movie) => {
+  const movieExistsInSearchResults = movieWatchList.find(
+    (item) => item.imdbID === movie.imdbID
+  );
+  if (!movieExistsInSearchResults) {
+    // If the movie doesn't exist, dispatch the actions
     dispatch(addMovieToWatchList(movie));
-    dispatch(setBadgeCount(badgeCount+1))
-  };
+    dispatch(setBadgeCount(badgeCount + 1));
+  }
+  else {
+
+  }
+};
 
   const cardStyle = {
     display: 'flex',
@@ -49,7 +61,13 @@ export function SearchResults() {
     <div>
       <Grid container spacing={2} justifyContent="center" alignItems="center" item xs={12} sm={6} md={12}>
         <Typography variant="h4" component="div">
-          Search results for - {movieSearchTerm}
+          Search Results
+        </Typography>
+      </Grid>
+      <Box mb={2} />
+      <Grid container spacing={2} justifyContent="center" alignItems="center" item xs={12} sm={6} md={12}>
+        <Typography variant="h5" component="div">
+          {searchTerm}
         </Typography>
       </Grid>
       <Box mb={2} />
@@ -60,4 +78,3 @@ export function SearchResults() {
   );
 }
 
-// <img src={item.Poster} alt='Film Poster' />

@@ -8,8 +8,7 @@ export const fetchMovies = async (movieSearchTerm) => {
     if (!response.ok) {
       throw new Error('Network response was not ok.');
     }
-    const data = await response.json();
-    console.log(data)      
+    const data = await response.json();        
     return data;
   } catch (error) {
     // Handle errors, log, or throw as necessary  

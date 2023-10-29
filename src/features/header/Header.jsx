@@ -34,6 +34,9 @@ const Search = styled('div')(({ theme }) => ({
     marginLeft: theme.spacing(1),
     width: 'auto',
   },
+  [theme.breakpoints.down('sm')]: {
+    display: 'flex',
+  },
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -157,7 +160,7 @@ export default function Header() {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >            
-            Movie Finder & Planner            
+            Movie Finder          
           </Typography>
           <Link
                 to="/WatchList">
