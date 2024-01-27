@@ -31,7 +31,7 @@ export function SearchResults() {
     dispatch(setNotificationType('error'))
     dispatch(setNotificationVertical('top'))
     dispatch(setNotificationHorizontal('center'))
-    dispatch(setNotificationMessage('Movie exists'))
+    dispatch(setNotificationMessage('Movie already in list'))
   }
   setTimeout(() => {
     dispatch(setNotificationDisplay(true));
