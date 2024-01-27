@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { setNotificationType, setNotificationMessage, setNotificationDisplay, setNotificationVertical, setNotificationHorizontal } from '../notifications/notificationsSlice';
 import { Card, CardContent, Grid, Typography, Box, Button } from '@mui/material';
 import { addMovieToWatchList, setBadgeCount } from '../watchList/watchListSlice';
 import Image from 'mui-image';
@@ -20,11 +21,21 @@ export function SearchResults() {
   );
   if (!movieExistsInSearchResults) {
     dispatch(addMovieToWatchList(movie));
-    dispatch(setBadgeCount(badgeCount + 1));
+    dispatch(setBadgeCount(badgeCount + 1));    
+    dispatch(setNotificationType('success'))
+    dispatch(setNotificationVertical('top'))
+    dispatch(setNotificationHorizontal('center')) 
+    dispatch(setNotificationMessage('Movie added'))
   }
   else {
-    // Add popper here
+    dispatch(setNotificationType('error'))
+    dispatch(setNotificationVertical('top'))
+    dispatch(setNotificationHorizontal('center'))
+    dispatch(setNotificationMessage('Movie exists'))
   }
+  setTimeout(() => {
+    dispatch(setNotificationDisplay(true));
+  }, 250);
 };
 
   const cardStyle = {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { setNotificationType, setNotificationMessage, setNotificationDisplay, setNotificationVertical, setNotificationHorizontal } from '../notifications/notificationsSlice';
 import { Card, CardContent, Grid, Typography, Box, Button } from '@mui/material';
 import { removeFromWatchlist } from './watchListSlice';
 import Image from 'mui-image';
@@ -11,6 +12,13 @@ export function WatchList() {
   
   const handleRemoveFromWatchlist = (movie) => {
     dispatch(removeFromWatchlist(movie));
+    dispatch(setNotificationType('success'))
+    dispatch(setNotificationVertical('top'))
+    dispatch(setNotificationHorizontal('center')) 
+    dispatch(setNotificationMessage('Movie removed'))
+    setTimeout(() => {
+      dispatch(setNotificationDisplay(true));
+    }, 250);    
   };  
 
   const cardStyle = {
